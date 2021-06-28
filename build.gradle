@@ -28,6 +28,6 @@ if (hasProperty("teamcity")) {
 }
 println(project.version)
 if (hasProperty("teamcity")) {
-    teamcity["env.artefaict_version"] = project.version
-    println(teamcity["env.artefaict_version"])
+    teamcity["reverse.dep.Versions_Start.artefaict_version"] = project.version
+    println(teamcity["reverse.dep.Versions_Start.artefaict_version"])
 }
