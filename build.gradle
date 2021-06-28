@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def parts = version.toString().split("\\.")
+def build = parts[3]
+def targetVersion = parts[0] + "." + parts[1] + "." + parts[2]
+def tail = build.contains("SNAPSHOT") ? "-SNAPSHOT" : ""
+if (hasProperty("teamcity")) {
+    project.version = targetVersion + "." + teamcity["build.number"] + tail
+} else {
+    project.version = targetVersion + tail
+}
