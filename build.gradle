@@ -26,3 +26,8 @@ if (hasProperty("teamcity")) {
 } else {
     project.version = targetVersion + tail
 }
+print(project.version)
+if (hasProperty("teamcity")) {
+    teamcity["artefaict_version"] = project.version
+    print(teamcity)
+}
