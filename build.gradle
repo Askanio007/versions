@@ -17,13 +17,18 @@ test {
     useJUnitPlatform()
 }
 
-def parts = version.toString().split("\\.")
-def build = parts[3]
-def targetVersion = parts[0] + "." + parts[1] + "." + parts[2]
-def tail = build.contains("SNAPSHOT") ? "-SNAPSHOT" : ""
 if (hasProperty("teamcity")) {
-    project.version = targetVersion + "." + teamcity["build.number"] + tail
+    project.version = String.format(targetVersion(), "." + teamcity["build.number"])
     println "##teamcity[setParameter name='ARTIFACT_VERSION' value='${project.version}']"
 } else {
-    project.version = targetVersion + tail
+    project.version = String.format(targetVersion(), "")
+}
+
+String targetVersion() {
+    def parts = version.toString().split("\\.")
+    return parts[0] + "." + parts[1] + "." + parts[2] + "%s" + snapshotVersion()
+}
+
+String snapshotVersion() {
+    return version.contains("SNAPSHOT") ? "-SNAPSHOT" : ""
 }
