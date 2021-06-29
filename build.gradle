@@ -29,11 +29,7 @@ if (hasProperty("teamcity")) {
 println(project.version)
 if (hasProperty("teamcity")) {
     println(teamcity)
-    println("old " + teamcity["system.ARTIFACT_VERSION"])
-    teamcity["system.ARTIFACT_VERSION"] = project.version
-    println("new " + teamcity["system.ARTIFACT_VERSION"])
-    println("===")
-    println("old " + teamcity["ARTIFACT_VERSION"])
-    teamcity["ARTIFACT_VERSION"] = project.version
-    println("new " + teamcity["ARTIFACT_VERSION"])
+    println("old " + teamcity["env.ARTIFACT_VERSION"])
+    teamcity["env.ARTIFACT_VERSION"] = project.version
+    println("new " + teamcity["env.ARTIFACT_VERSION"])
 }
