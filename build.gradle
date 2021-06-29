@@ -34,4 +34,5 @@ if (hasProperty("teamcity")) {
     println "##teamcity[ARTIFACT_VERSION '${project.version}']"
     println "##teamcity[ARTIFACT_VERSION_3 '${project.version}']"
     println "##teamcity[system.ARTIFACT_VERSION_3 '${project.version}']"
+    println(teamcity)
 }
