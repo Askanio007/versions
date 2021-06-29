@@ -29,10 +29,10 @@ if (hasProperty("teamcity")) {
 println(project.version)
 if (hasProperty("teamcity")) {
     println(teamcity)
-    println "##teamcity[ARTIFACT_VERSION_2 '${project.version}']"
-    println "##teamcity[env.ARTIFACT_VERSION '${project.version}']"
-    println "##teamcity[ARTIFACT_VERSION '${project.version}']"
-    println "##teamcity[ARTIFACT_VERSION_3 '${project.version}']"
-    println "##teamcity[system.ARTIFACT_VERSION_3 '${project.version}']"
+    println "##teamcity[setParameter name='ARTIFACT_VERSION_2' value='${project.version}']"
+    println "##teamcity[setParameter name='env.ARTIFACT_VERSION' value='${project.version}']"
+    println "##teamcity[setParameter name='ARTIFACT_VERSION' value='${project.version}']"
+    println "##teamcity[setParameter name='ARTIFACT_VERSION_3' value='${project.version}']"
+    println "##teamcity[setParameter name='system.ARTIFACT_VERSION_3' value='${project.version}']"
     println(teamcity)
 }
